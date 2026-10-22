@@ -1,0 +1,2 @@
+# studybuddy-india-
+For education 
