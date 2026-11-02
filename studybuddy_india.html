@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyBuddy India | Practice Papers</title>
+<style>
+  :root { --navy:#14213d; --blue:#2457d6; --pale:#eef3ff; --ink:#172033; --muted:#667085; --line:#dce3ef; --green:#13795b; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#f5f7fb; color:var(--ink); }
+  header { background:linear-gradient(135deg,#14213d,#2457d6); color:white; padding:25px 17px 23px; }
+  .wrap { max-width:850px; margin:auto; }
+  .brand { font-size:12px; font-weight:800; letter-spacing:1.5px; opacity:.9; text-transform:uppercase; }
+  h1 { font-size:28px; line-height:1.15; margin:8px 0; }
+  header p { margin:0; font-size:14px; line-height:1.5; color:#e3eaff; }
+  main { max-width:850px; margin:16px auto; padding:0 12px 30px; }
+  .notice { background:#fff8e6; border:1px solid #f0d38a; color:#674b00; border-radius:12px; padding:12px; font-size:13px; line-height:1.5; margin-bottom:14px; }
+  .card { background:white; border:1px solid var(--line); border-radius:16px; padding:16px; margin-bottom:14px; box-shadow:0 3px 12px rgba(25,40,75,.04); }
+  h2 { font-size:18px; margin:0 0 12px; }
+  .hint { color:var(--muted); font-size:13px; margin-top:-5px; line-height:1.5; }
+  label { display:block; font-size:13px; font-weight:700; margin:13px 0 6px; }
+  select, input { width:100%; border:1px solid #cbd5e1; border-radius:10px; padding:12px; font-size:16px; background:white; color:var(--ink); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .chapters { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:9px; }
+  .chapter { border:1px solid var(--line); border-radius:10px; padding:10px; font-size:14px; display:flex; align-items:flex-start; gap:8px; }
+  .chapter input { width:auto; margin-top:3px; }
+  button { border:0; border-radius:11px; padding:13px 15px; font-size:15px; font-weight:750; cursor:pointer; }
+  .primary { width:100%; background:var(--blue); color:white; margin-top:15px; }
+  .secondary { background:var(--pale); color:var(--blue); }
+  .actions { display:flex; gap:9px; flex-wrap:wrap; margin-top:14px; }
+  .actions button { flex:1; min-width:130px; }
+  #paper { display:none; }
+  .paper-title { border-bottom:2px solid var(--navy); padding-bottom:12px; margin-bottom:14px; }
+  .paper-title h2 { font-size:22px; }
+  .meta { font-size:13px; color:var(--muted); line-height:1.7; }
+  .question { border-bottom:1px solid var(--line); padding:12px 0; line-height:1.55; }
+  .qtop { display:flex; justify-content:space-between; gap:10px; font-weight:750; }
+  .opts { padding-left:22px; margin:8px 0 0; }
+  .answer { background:#f0faf6; border:1px solid #b8e4d2; padding:12px; border-radius:10px; margin-top:12px; }
+  .answer h3 { margin:0 0 8px; font-size:16px; }
+  .answer ol { padding-left:20px; margin-bottom:0; }
+  footer { text-align:center; color:var(--muted); font-size:12px; padding:10px 15px 24px; }
+  @media (max-width:480px) { h1{font-size:25px;} .grid,.chapters{grid-template-columns:1fr;} .card{padding:14px;} }
+  @media print {
+    body { background:white; }
+    header, #setup, .notice, .screen-only, footer { display:none !important; }
+    main { margin:0; padding:0; max-width:none; }
+    .card { box-shadow:none; border:0; padding:0; }
+    #paper { display:block !important; }
+    .question { break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">StudyBuddy India</div>
+    <h1>Make a plan. Practice with purpose.</h1>
+    <p>Board-wise study practice for students. Choose your class, subject and chapters to create a practice paper.</p>
+  </div>
+</header>
+<main>
+  <div class="notice"><strong>Important:</strong> These are practice questions, not official papers or guaranteed exam predictions. Check your current official board syllabus and textbook. Questions in this first demo are sample questions and have not been verified against the full JKBOSE Class 8 syllabus.</div>
+
+  <section class="card" id="setup">
+    <h2>Create your practice paper</h2>
+    <p class="hint">Apna board, class aur subject select karo. (Choose your board, class and subject.)</p>
+
+    <div class="grid">
+      <div>
+        <label for="board">Education board</label>
+        <select id="board">
+          <option value="JKBOSE">JKBOSE</option>
+          <option value="CBSE">CBSE (demo placeholder)</option>
+          <option value="Other state board">Other State Board (coming soon)</option>
+        </select>
+      </div>
+      <div>
+        <label for="className">Class</label>
+        <select id="className">
+          <option>Class 8</option>
+          <option disabled>Class 6 (coming soon)</option>
+          <option disabled>Class 7 (coming soon)</option>
+          <option disabled>Class 9 (coming soon)</option>
+          <option disabled>Class 10 (coming soon)</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="subject">Subject</label>
+    <select id="subject">
+      <option value="Mathematics">Mathematics (sample bank)</option>
+      <option value="Science">Science (sample bank)</option>
+      <option value="English">English (sample bank)</option>
+    </select>
+
+    <label>Chapters / topics</label>
+    <p class="hint">Select one or more topics. Chapter names are demo topics, not a verified official syllabus list.</p>
+    <div class="chapters" id="chapters"></div>
+
+    <div class="grid">
+      <div>
+        <label for="count">Number of questions</label>
+        <select id="count">
+          <option value="5">5 questions</option>
+          <option value="10">10 questions</option>
+          <option value="15">15 questions</option>
+        </select>
+      </div>
+      <div>
+        <label for="level">Difficulty</label>
+        <select id="level">
+          <option value="Mixed">Mixed</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+        </select>
+      </div>
+    </div>
+    <button class="primary" id="generate">Generate practice paper</button>
+    <p class="hint" style="margin-top:10px">Generate dabao — paper isi device/browser mein banega. Internet ki zaroorat sirf page kholne ke liye hai.</p>
+  </section>
+
+  <section class="card" id="paper">
+    <div class="paper-title">
+      <div class="brand" style="color:#2457d6">StudyBuddy India • Practice only</div>
+      <h2 id="paperHeading">Practice Paper</h2>
+      <div class="meta" id="paperMeta"></div>
+    </div>
+    <p><strong>Instructions:</strong> Answer every question. Marks are suggested for practice. Yeh official exam paper nahi hai.</p>
+    <div id="questions"></div>
+    <div class="answer" id="answerKey" hidden>
+      <h3>Answer key / Jawab</h3>
+      <ol id="answers"></ol>
+    </div>
+    <div class="actions screen-only">
+      <button class="secondary" id="toggleAnswers">Show answer key</button>
+      <button class="primary" style="width:auto;margin:0" id="print">Print / Save PDF</button>
+    </div>
+  </section>
+</main>
+<footer>StudyBuddy India • Student project prototype • Verify all syllabus and answers before exam use.</footer>
+
+<script>
+const topicBank = {
+  Mathematics: [
+    {name:"Rational numbers", qs:[
+      {q:"Which fraction is equivalent to 1/2?", options:["2/3","3/6","4/6","2/5"], a:1, level:"Easy"},
+      {q:"Calculate: (-3) + 8", options:["-11","-5","5","11"], a:2, level:"Easy"},
+      {q:"What is the reciprocal of 5/7?", options:["5/7","-5/7","7/5","1/5"], a:2, level:"Medium"},
+      {q:"Simplify: 2/3 + 1/6", options:["3/9","5/6","1/2","1"], a:1, level:"Medium"}
+    ]},
+    {name:"Linear equations", qs:[
+      {q:"Solve: x + 4 = 10", options:["4","5","6","14"], a:2, level:"Easy"},
+      {q:"If 3x = 21, what is x?", options:["6","7","8","18"], a:1, level:"Easy"},
+      {q:"Solve: 2x - 5 = 9", options:["2","5","7","9"], a:2, level:"Medium"}
+    ]},
+    {name:"Mensuration", qs:[
+      {q:"A rectangle is 6 cm long and 4 cm wide. What is its area?", options:["10 cm²","20 cm²","24 cm²","24 cm"], a:2, level:"Easy"},
+      {q:"What is the perimeter of a square with side 5 cm?", options:["10 cm","15 cm","20 cm","25 cm"], a:2, level:"Easy"},
+      {q:"A rectangle has length 8 cm and width 3 cm. Find its perimeter.", options:["11 cm","22 cm","24 cm","48 cm"], a:1, level:"Medium"}
+    ]}
+  ],
+  Science: [
+    {name:"Force and pressure", qs:[
+      {q:"Which instrument is commonly used to measure force?", options:["Thermometer","Spring balance","Measuring cylinder","Stopwatch"], a:1, level:"Easy"},
+      {q:"Pressure is force divided by which quantity?", options:["Time","Area","Speed","Volume"], a:1, level:"Easy"},
+      {q:"What is the SI unit of force?", options:["Joule","Pascal","Newton","Watt"], a:2, level:"Medium"}
+    ]},
+    {name:"Materials and metals", qs:[
+      {q:"Which of these is generally a good conductor of electricity?", options:["Rubber","Copper","Wood","Plastic"], a:1, level:"Easy"},
+      {q:"Rusting of iron requires oxygen and what else?", options:["Oil","Water/moisture","Sand only","Carbon dioxide only"], a:1, level:"Medium"}
+    ]},
+    {name:"Cells and living things", qs:[
+      {q:"Which cell structure controls many cell activities?", options:["Nucleus","Cell wall only","Vacuole only","Cytoplasm only"], a:0, level:"Easy"},
+      {q:"Which instrument is used to observe very small cells?", options:["Telescope","Microscope","Periscope","Barometer"], a:1, level:"Easy"}
+    ]}
+  ],
+  English: [
+    {name:"Grammar", qs:[
+      {q:"Choose the correct past tense: 'They ___ to school yesterday.'", options:["go","goes","went","going"], a:2, level:"Easy"},
+      {q:"Identify the adjective: 'The bright star shone.'", options:["star","shone","bright","the"], a:2, level:"Easy"},
+      {q:"Choose the correct article: 'She ate ___ apple.'", options:["a","an","the only","no article always"], a:1, level:"Medium"}
+    ]},
+    {name:"Vocabulary", qs:[
+      {q:"Which word is closest in meaning to 'rapid'?", options:["Slow","Quick","Quiet","Weak"], a:1, level:"Easy"},
+      {q:"What is the opposite of 'ancient'?", options:["Old","Historic","Modern","Past"], a:2, level:"Easy"}
+    ]},
+    {name:"Reading skills", qs:[
+      {q:"What should you identify first to understand a passage?", options:["The main idea","Every punctuation mark only","The page colour","The font size"], a:0, level:"Medium"}
+    ]}
+  ]
+};
+
+const topicEl = document.getElementById("chapters");
+const subjectEl = document.getElementById("subject");
+const paperEl = document.getElementById("paper");
+let currentQuestions = [];
+
+function renderTopics() {
+  topicEl.innerHTML = "";
+  topicBank[subjectEl.value].forEach((topic, i) => {
+    const label = document.createElement("label");
+    label.className = "chapter";
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.value = topic.name;
+    input.checked = i === 0;
+    const span = document.createElement("span");
+    span.textContent = topic.name;
+    label.append(input, span);
+    topicEl.append(label);
+  });
+}
+subjectEl.addEventListener("change", renderTopics);
+renderTopics();
+
+function generatePaper() {
+  const chosenTopics = [...topicEl.querySelectorAll("input:checked")].map(x => x.value);
+  if (!chosenTopics.length) {
+    alert("Please select at least one topic. Kam se kam ek topic select karo.");
+    return;
+  }
+  const subject = subjectEl.value;
+  const difficulty = document.getElementById("level").value;
+  const count = Number(document.getElementById("count").value);
+  let pool = topicBank[subject].filter(t => chosenTopics.includes(t.name)).flatMap(t =>
+    t.qs.filter(q => difficulty === "Mixed" || q.level === difficulty).map(q => ({...q, topic:t.name}))
+  );
+  if (!pool.length) {
+    alert("No questions for that difficulty in the selected topics. Choose Mixed or another topic.");
+    return;
+  }
+  // Shuffle so each generated paper may have a different order.
+  pool = pool.sort(() => Math.random() - 0.5);
+  currentQuestions = pool.slice(0, Math.min(count, pool.length));
+  document.getElementById("paperHeading").textContent = subject + " Practice Paper";
+  document.getElementById("paperMeta").textContent =
+    document.getElementById("board").value + " • " + document.getElementById("className").value +
+    " • Topics: " + chosenTopics.join(", ") + " • Questions: " + currentQuestions.length +
+    " • Suggested total: " + currentQuestions.length + " marks";
+  const questionsEl = document.getElementById("questions");
+  questionsEl.innerHTML = "";
+  const answersEl = document.getElementById("answers");
+  answersEl.innerHTML = "";
+  currentQuestions.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    const top = document.createElement("div");
+    top.className = "qtop";
+    const qtitle = document.createElement("span");
+    qtitle.textContent = (index + 1) + ". " + item.q;
+    const marks = document.createElement("span");
+    marks.textContent = "1 mark";
+    top.append(qtitle, marks);
+    div.append(top);
+    const ol = document.createElement("ol");
+    ol.className = "opts";
+    ol.type = "A";
+    item.options.forEach(opt => {
+      const li = document.createElement("li");
+      li.textContent = opt;
+      ol.append(li);
+    });
+    div.append(ol);
+    questionsEl.append(div);
+    const ans = document.createElement("li");
+    ans.textContent = String.fromCharCode(65 + item.a) + " — " + item.options[item.a];
+    answersEl.append(ans);
+  });
+  document.getElementById("answerKey").hidden = true;
+  document.getElementById("toggleAnswers").textContent = "Show answer key";
+  paperEl.style.display = "block";
+  paperEl.scrollIntoView({behavior:"smooth", block:"start"});
+}
+document.getElementById("generate").addEventListener("click", generatePaper);
+document.getElementById("toggleAnswers").addEventListener("click", () => {
+  const key = document.getElementById("answerKey");
+  key.hidden = !key.hidden;
+  document.getElementById("toggleAnswers").textContent = key.hidden ? "Show answer key" : "Hide answer key";
+});
+document.getElementById("print").addEventListener("click", () => window.print());
+</script>
+</body>
+</html>
